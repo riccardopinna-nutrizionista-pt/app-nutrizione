@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>App Nutrizione</title>
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#2ecc71" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🥗 App Nutrizione</h1>
+    <p>Il tuo piano alimentare personalizzato</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>📋 Il Tuo Piano</h2>
+      <p>Benvenuto nella tua area personale. Qui troverai il tuo piano nutrizionale aggiornato dal tuo nutrizionista.</p>
+    </section>
+
+    <section class="card">
+      <h2>🍽️ Pasto di Oggi</h2>
+      <ul id="meal-list">
+        <li>Colazione: Yogurt greco + frutta</li>
+        <li>Pranzo: Riso integrale + pollo + verdure</li>
+        <li>Cena: Salmone + patate dolci + insalata</li>
+        <li>Spuntino: Frutta secca 30g</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>💪 Allenamento</h2>
+      <p>Sessione: <strong>Forza - Lower Body</strong></p>
+      <ul>
+        <li>Squat 4x6</li>
+        <li>Romanian Deadlift 3x10</li>
+        <li>Leg Press 3x12</li>
+        <li>Leg Curl 3x12</li>
+      </ul>
+    </section>
+
+    <section class="card macro-card">
+      <h2>📊 Macros del Giorno</h2>
+      <div class="macros">
+        <div class="macro">
+          <span class="macro-value">2200</span>
+          <span class="macro-label">kcal</span>
+        </div>
+        <div class="macro">
+          <span class="macro-value">180g</span>
+          <span class="macro-label">Proteine</span>
+        </div>
+        <div class="macro">
+          <span class="macro-value">220g</span>
+          <span class="macro-label">Carboidrati</span>
+        </div>
+        <div class="macro">
+          <span class="macro-value">65g</span>
+          <span class="macro-label">Grassi</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Riccardo Pinna - Biologo Nutrizionista</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
