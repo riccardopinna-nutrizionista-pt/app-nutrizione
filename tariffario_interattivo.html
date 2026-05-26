@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piani Personalizzati - Nutrizione & Allenamento</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',
+                            card: '#1e293b',
+                            accent: '#10b981', // Smeraldo per nutrizione/fitness
+                            fitness: '#06b6d4', // Ciano per allenamento
+                            premium: '#8b5cf6'  // Viola per premium/autonomia
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-border {
+            position: relative;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            padding: 2.5px;
+        }
+        .gradient-border-content {
+            background: #1e293b;
+            border-radius: calc(1.5rem - 2.5px);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-emerald-500/30 selection:text-emerald-300">
+
+    <!-- Header Credenziali -->
+    <header class="relative overflow-hidden py-16 px-4 text-center border-b border-slate-800 bg-slate-900/50">
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 blur-[100px] pointer-events-none rounded-full"></div>
+        
+        <div class="relative max-w-4xl mx-auto">
+            <!-- Badge Lauree L-22 & LM-61 -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-800/80 text-emerald-400 text-xs font-bold tracking-wider uppercase mb-6 border border-emerald-500/20 shadow-sm">
+                <i data-lucide="graduation-cap" class="w-4 h-4 text-emerald-400"></i>
+                Chinesiologo L-22 &amp; Nutrizionista LM-61
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight mb-4 leading-tight">
+                Piani di <span class="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">Nutrizione &amp; Allenamento</span>
+            </h1>
+            <p class="text-slate-400 max-w-2xl mx-auto text-base md:text-lg mb-8">
+                Programmi personalizzati basati sulle evidenze scientifiche per migliorare la composizione corporea, la salute e la performance atletica.
+            </p>
+
+            <!-- Supporto di 1 Mese in Evidenza -->
+            <div class="max-w-xl mx-auto bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center gap-4 text-left shadow-xl">
+                <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl shrink-0">
+                    <i data-lucide="message-square" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm text-slate-200">Supporto Diretto Incluso</h4>
+                    <p class="text-xs text-slate-400 mt-1">
+                        In tutti i pacchetti compreso <strong class="text-emerald-400">1 mese intero</strong> di assistenza via chat per chiarire dubbi, richiedere modifiche o adattare il percorso.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filtri Interattivi -->
+    <section class="py-8 px-4 max-w-6xl mx-auto text-center">
+        <div class="inline-flex bg-slate-900 p-1.5 rounded-2xl border border-slate-800 gap-1 shadow-md">
+            <button onclick="filterCards('all')" id="btn-all" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold transition-all bg-emerald-500 text-slate-950 shadow-lg shadow-emerald-500/10">Tutti</button>
+            <button onclick="filterCards('singoli')" id="btn-singoli" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Servizi Singoli</button>
+            <button onclick="filterCards('combinati')" id="btn-combinati" class="filter-btn px-5 py-2.5 rounded-xl text-sm font-bold text-slate-400 hover:text-white transition-all">Percorsi Integrati</button>
+        </div>
+    </section>
+
+    <!-- Griglia dei Pacchetti -->
+    <main class="px-4 pb-20 max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Nutrizione -->
+        <div class="card-item bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-700 hover:-translate-y-1 shadow-lg" data-category="singoli">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="p-3 bg-emerald-500/10 text-emerald-400 rounded-2xl"><i data-lucide="apple" class="w-6 h-6"></i></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/40 px-3 py-1 rounded-full border border-emerald-500/20">Nutrizione</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Nutrizione</h3>
+                <p class="text-slate-400 text-sm mb-6">Pianificazione alimentare personalizzata su misura per il tuo stile di vita ed obiettivi fisici.</p>
+                <div class="border-t border-slate-800 pt-5 mb-8">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Servizi Inclusi</h4>
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Prima visita e anamnesi completa</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>Piano alimentare altamente personalizzato</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span>1 mese di modifiche e supporto</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-black text-white">77€</span>
+                    <span class="text-xs text-slate-500">/ una tantum</span>
+                </div>
+                <button onclick="selectPackage('Nutrizione', 77)" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-slate-200 py-3.5 rounded-xl font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2">
+                    Richiedi Nutrizione <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Allenamento -->
+        <div class="card-item bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-700 hover:-translate-y-1 shadow-lg" data-category="singoli">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="p-3 bg-cyan-500/10 text-cyan-400 rounded-2xl"><i data-lucide="dumbbell" class="w-6 h-6"></i></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/40 px-3 py-1 rounded-full border border-cyan-500/20">Allenamento</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Allenamento</h3>
+                <p class="text-slate-400 text-sm mb-6">Programmazione tecnica periodizzata ed esecuzione corretta garantita dalla presenza del trainer.</p>
+                <div class="border-t border-slate-800 pt-5 mb-8">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Servizi Inclusi</h4>
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>Scheda d'allenamento strutturata (valore 60€)</span></li>
+                        <li class="flex items-start gap-3 text-cyan-300 font-medium"><i data-lucide="sparkles" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span><strong>1 Lezione Personal inclusa (valore 20€)</strong> per spiegare ed impostare la scheda</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span>1 mese di supporto e correzione video</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-black text-white">80€</span>
+                    <span class="text-xs text-slate-500">/ scheda + sessione</span>
+                </div>
+                <button onclick="selectPackage('Allenamento', 80)" class="w-full bg-slate-800 hover:bg-cyan-500 hover:text-slate-950 text-slate-200 py-3.5 rounded-xl font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2">
+                    Richiedi Allenamento <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Personal -->
+        <div class="card-item bg-slate-900 border border-slate-800 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-slate-700 hover:-translate-y-1 shadow-lg" data-category="singoli">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="p-3 bg-slate-800 text-slate-400 rounded-2xl"><i data-lucide="user" class="w-6 h-6"></i></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-400 bg-slate-850 px-3 py-1 rounded-full border border-slate-800">1-to-1</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Sessione Personal</h3>
+                <p class="text-slate-400 text-sm mb-6">Seduta di allenamento guidata individualmente per spremere il massimo da ogni ripetizione tecnica.</p>
+                <div class="border-t border-slate-800 pt-5 mb-8">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">Servizi Inclusi</h4>
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-slate-400 shrink-0 mt-0.5"></i><span>1 Sessione singola di personal training</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-slate-400 shrink-0 mt-0.5"></i><span>Spiegazione dettagliata degli esercizi critici</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-black text-white">25€</span>
+                    <span class="text-xs text-slate-500">/ sessione</span>
+                </div>
+                <button onclick="selectPackage('Personal', 25)" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 py-3.5 rounded-xl font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2">
+                    Richiedi Sessione <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- All-In-One Featured -->
+        <div class="card-item gradient-border shadow-2xl flex flex-col justify-between transition-all duration-300 hover:-translate-y-1" data-category="combinati">
+            <div class="gradient-border-content p-6 h-full flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="p-3 bg-gradient-to-r from-emerald-500 to-cyan-500 text-slate-950 rounded-2xl"><i data-lucide="zap" class="w-6 h-6"></i></span>
+                        <span class="text-xs font-extrabold tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-500/30 uppercase">Consigliato</span>
+                    </div>
+                    <h3 class="text-2xl font-black mb-2 text-white">All-In-One</h3>
+                    <p class="text-slate-300 text-sm mb-6">La sinergia perfetta. Nutrizione avanzata e piano d'allenamento coordinati insieme per velocizzare i risultati fisici.</p>
+                    <div class="border-t border-slate-700 pt-5 mb-8">
+                        <h4 class="text-xs font-bold text-emerald-400 uppercase tracking-wider mb-3">Cosa Risparmi</h4>
+                        <ul class="space-y-3.5 text-sm text-slate-200">
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span><strong class="text-white">Nutrizione:</strong> Visita completa + Dieta</span></li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-cyan-400 shrink-0 mt-0.5"></i><span><strong class="text-white">Allenamento:</strong> Scheda + Lezione di spiegazione</span></li>
+                            <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i><span><strong class="text-white">Supporto continuo</strong> prioritario per 1 mese</span></li>
+                            <li class="flex items-start gap-3 text-emerald-300 font-bold bg-emerald-950/40 p-2 rounded-lg border border-emerald-500/10"><i data-lucide="piggy-bank" class="w-5 h-5 text-emerald-400 shrink-0"></i><span>Risparmi subito 42€!</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-baseline gap-2 mb-6">
+                        <span class="text-4xl font-black text-white">140€</span>
+                        <span class="text-sm text-slate-400 line-through">182€</span>
+                    </div>
+                    <button onclick="selectPackage('All-In-One', 140)" class="w-full bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 py-3.5 rounded-xl font-extrabold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/10">
+                        Seleziona All-In-One <i data-lucide="zap" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Premium Autonomy -->
+        <div class="card-item bg-slate-900 border-2 border-purple-500/30 rounded-3xl p-6 flex flex-col justify-between transition-all duration-300 hover:border-purple-500/50 hover:-translate-y-1 shadow-lg" data-category="combinati">
+            <div>
+                <div class="flex justify-between items-start mb-6">
+                    <span class="p-3 bg-purple-500/10 text-purple-400 rounded-2xl"><i data-lucide="sparkles" class="w-6 h-6"></i></span>
+                    <span class="text-xs font-bold uppercase tracking-wider text-purple-400 bg-purple-950/40 px-3 py-1 rounded-full border border-purple-500/20">Elite</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-2">Premium Autonomy</h3>
+                <p class="text-slate-400 text-sm mb-6">Non un semplice percorso, ma l'apprendimento delle competenze scientifiche per sapersi gestire per sempre.</p>
+                <div class="border-t border-slate-800 pt-5 mb-8">
+                    <h4 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-3">La Tua Formazione</h4>
+                    <ul class="space-y-3.5 text-sm text-slate-300">
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>Tutti i servizi inclusi in <strong>All-In-One</strong></span></li>
+                        <li class="flex items-start gap-3 text-purple-300 font-semibold"><i data-lucide="video" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span><strong>Video supporto personalizzato:</strong> Spiegazione teorica e strategie future</span></li>
+                        <li class="flex items-start gap-3"><i data-lucide="check" class="w-4 h-4 text-purple-400 shrink-0 mt-0.5"></i><span>Insegnamento pratico dell'autoregolazione</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <div class="flex items-baseline gap-1 mb-6">
+                    <span class="text-4xl font-black text-white">200€</span>
+                    <span class="text-xs text-slate-500">/ pacchetto completo</span>
+                </div>
+                <button onclick="selectPackage('Premium Autonomy', 200)" class="w-full bg-purple-600 hover:bg-purple-500 text-white py-3.5 rounded-xl font-bold text-sm transition-all duration-150 flex items-center justify-center gap-2 shadow-lg shadow-purple-500/10">
+                    Scegli Autonomy <i data-lucide="sparkles" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- WhatsApp Generator Section -->
+    <section id="contact" class="bg-slate-900/60 border-t border-slate-800 py-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-extrabold tracking-tight mb-3">Pronto a Cambiare Marcia?</h2>
+                <p class="text-slate-400 text-sm md:text-base">Scegli il pacchetto, visualizza l'anteprima del testo e inviami direttamente un messaggio su WhatsApp.</p>
+            </div>
+
+            <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 md:p-8 shadow-2xl relative">
+                <div class="absolute -top-3 -right-3 bg-emerald-500 text-slate-950 font-black text-[10px] uppercase tracking-wider px-3 py-1 rounded-full shadow-md">Rapido &amp; Sicuro</div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Seleziona Servizio</label>
+                        <select id="package-selector" onchange="updateMessage()" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+                            <option value="All-In-One">All-In-One — 140€</option>
+                            <option value="Nutrizione">Nutrizione — 77€</option>
+                            <option value="Allenamento">Allenamento — 80€</option>
+                            <option value="Personal">Sessione Personal — 25€</option>
+                            <option value="Premium Autonomy">Premium Autonomy — 200€</option>
+                            <option value="Generica">Richiesta Informazioni Generali</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Il Tuo Numero WhatsApp (opzionale per test)</label>
+                        <input type="text" id="phone-input" placeholder="+39 123 456 7890" value="+393281440814" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-3.5 text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors">
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Messaggio Precompilato</label>
+                    <div id="message-preview" class="bg-slate-950 border border-slate-800 p-4 rounded-2xl text-slate-300 text-sm whitespace-pre-wrap font-mono relative">
+                        Caricamento...
+                    </div>
+                </div>
+
+                <button onclick="sendWhatsApp()" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold py-4 rounded-2xl transition-all duration-150 flex items-center justify-center gap-3 text-lg shadow-lg shadow-emerald-500/20">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    Invia su WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-slate-950 text-center text-xs text-slate-600 border-t border-slate-900">
+        <p class="max-w-md mx-auto mb-4">Servizi integrati di Chinesiologia L-22 e Scienze della Nutrizione Umana LM-61 erogati secondo le linee guida scientifiche internazionali.</p>
+        <p>&copy; 2026. Tutti i diritti riservati.</p>
+    </footer>
+
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Filter Logic
+        function filterCards(category) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-emerald-500', 'text-slate-950', 'shadow-lg', 'shadow-emerald-500/10');
+                btn.classList.add('text-slate-400');
+            });
+            const activeBtn = document.getElementById('btn-' + category);
+            activeBtn.classList.remove('text-slate-400');
+            activeBtn.classList.add('bg-emerald-500', 'text-slate-950', 'shadow-lg', 'shadow-emerald-500/10');
+
+            document.querySelectorAll('.card-item').forEach(card => {
+                if (category === 'all') {
+                    card.style.display = 'flex';
+                } else {
+                    const cardCat = card.getAttribute('data-category');
+                    if (cardCat === category) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                }
+            });
+        }
+
+        // Package Selector mapping
+        function selectPackage(name, price) {
+            const selector = document.getElementById('package-selector');
+            selector.value = name;
+            updateMessage();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Auto generation of WA texts
+        function updateMessage() {
+            const selectValue = document.getElementById('package-selector').value;
+            let msg = '';
+            switch (selectValue) {
+                case 'All-In-One':
+                    msg = 'Ciao! Vorrei iniziare il percorso integrato All-In-One (Nutrizione + Allenamento + Personal) a 140€. Come possiamo organizzarci per la prima visita?';
+                    break;
+                case 'Nutrizione':
+                    msg = 'Ciao! Vorrei prenotare una prima visita per il servizio di Nutrizione da 77€ comprensivo di piano alimentare personalizzato.';
+                    break;
+                case 'Allenamento':
+                    msg = 'Ciao! Sarei interessato al pacchetto Allenamento da 80€ (Scheda di allenamento + 1 sessione di spiegazione personal inclusa).';
+                    break;
+                case 'Personal':
+                    msg = 'Ciao! Vorrei concordare una Sessione Singola Personal a 25€ per curare l\'esecuzione dei miei allenamenti.';
+                    break;
+                case 'Premium Autonomy':
+                    msg = 'Ciao! Sarei molto interessato al percorso avanzato Premium Autonomy da 200€ per acquisire autonomia nell\'allenamento e nella nutrizione.';
+                    break;
+                default:
+                    msg = 'Ciao! Vorrei avere alcune informazioni generali in merito ai tuoi servizi e pianificare un percorso insieme.';
+            }
+            document.getElementById('message-preview').innerText = msg;
+        }
+
+        function sendWhatsApp() {
+            const msg = document.getElementById('message-preview').innerText;
+            let phone = document.getElementById('phone-input').value.trim();
+            // Clean phone string
+            phone = phone.replace(/[^0-9]/g, '');
+            if (!phone) {
+                phone = "393281440814"; // Numero WhatsApp di default
+            }
+            const encodedMsg = encodeURIComponent(msg);
+            window.open('https://wa.me/' + phone + '?text=' + encodedMsg, '_blank');
+        }
+
+        // First execution
+        updateMessage();
+    </script>
+</body>
+</html>
